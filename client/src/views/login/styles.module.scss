@@ -7,11 +7,11 @@
     justify-content: center;
     
     @include mobile{
-        background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)), url('http://shultsofspb.ru/wp-content/uploads/2018/10/events-1.jpg') center;
+        background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)), url('@/assets/loginPage/background/events-1.jpg') center;
         background-size:cover;
     }
     @include tablet{
-        background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)), url('http://shultsofspb.ru/wp-content/uploads/2018/10/events-1.jpg') center;
+        background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)), url('@/loginPage/background/events-1.jpg') center;
         background-size:cover;
     }
             

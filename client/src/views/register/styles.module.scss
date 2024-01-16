@@ -6,10 +6,10 @@
     align-items: center;
     justify-content: center;
     @include mobile{
-        background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)),  url('https://kartinkof.club/uploads/posts/2022-05/1653715199_8-kartinkof-club-p-kartinki-veselikh-lyudei-ili-ulibayushchik-9.jpg') center;
+        background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)),  url('/client/src/assets/registrationPage/background/1653715199_8-kartinkof-club-p-kartinki-veselikh-lyudei-ili-ulibayushchik-9.jpg') center;
     }
     @include tablet{
-        background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)),  url('https://kartinkof.club/uploads/posts/2022-05/1653715199_8-kartinkof-club-p-kartinki-veselikh-lyudei-ili-ulibayushchik-9.jpg') center;
+        background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)),  url('/client/src/assets/registrationPage/background/1653715199_8-kartinkof-club-p-kartinki-veselikh-lyudei-ili-ulibayushchik-9.jpg') center;
         background-size:cover;
     }
             
