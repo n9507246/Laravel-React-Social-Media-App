@@ -1,8 +1,26 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate  } from 'react-router-dom'
+import { useAuth } from "@contexts/authContext"
+import useFormData from '@hooks/useFormData'
+import MyInput from '@UI/Myinput/MyInput'
 import classes from './styles.module.scss'
 
 function Register() {
 
+  const registrationData = useFormData()
+  const auth = useAuth()
+  const navigate = useNavigate()
+
+  const registrationFormHandler = (e)=>{
+
+      e.preventDefault();
+
+      auth.registration('/auth/registration', registrationData.getData())
+          .then(()=>{ navigate('/', {replace:true}) })
+          .catch((error)=>{
+              console.error('error',error)
+              if(error.response.status == 422) registrationData.setError(error.response.data.errors)    
+      })
+  }
   return (
     <div className={classes.register}>
       <div className={classes.card}>
@@ -19,12 +37,12 @@ function Register() {
         <div className={classes.right}>
           <h1>Register</h1>
           <div>
-            <form>
-              <input type="text" placeholder='Username' />
-              <input type="email" placeholder='Email' />
-              <input type="password" placeholder='Username' />
-              <input type="text" placeholder='Name' />
-              <button>Register</button>
+            <form onSubmit={registrationFormHandler}>
+            <MyInput name='name' type='text' placeholder='Username'  bindData={registrationData} />
+            <MyInput name='email' type='text' placeholder='Email'     bindData={registrationData} />
+            <MyInput name='password' type='password' placeholder='Password'  bindData={registrationData} />
+            <MyInput name='password_confirmation' type='password' placeholder='Password confirmation' bindData={registrationData} />
+              <button onClick={registrationFormHandler}>Register</button>
             </form>
             <div className={classes.login_link_mobile}>
                 Already have an account? 
