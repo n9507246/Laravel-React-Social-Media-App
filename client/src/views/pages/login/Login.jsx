@@ -1,9 +1,24 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import classes from './styles.module.scss'
 import LoginBtn from '@components/loginBtn/loginBtn'
-
+import useFormData from '@hooks/useFormData'
+import { useAuth } from "@contexts/authContext"
+import MyInput from '@UI/Myinput/MyInput'
 function Login() {
+  const navigate = useNavigate()
+  const loginForm = useFormData()
+  const auth = useAuth()
 
+  const loginFormHandler = (ev)=> {
+      
+      ev.preventDefault()
+
+      auth.login('/auth/login', loginForm.getData())
+          .then(() => navigate('/', {replace:true}))
+          .catch((error)=>{
+              if(error.response.status == 422) loginForm.setError(error.response.data.errors)
+          })
+  }
     return (
       <div className={classes.login}>
         <div className={classes.card}>
@@ -19,10 +34,10 @@ function Login() {
           </div>
           <div className={classes.right}>
             <h1>Login</h1>
-            <form>
-              <input type="text" placeholder='Username' />
-              <input type="password" placeholder='Password' />
-              <LoginBtn/>
+            <form onSubmit={loginFormHandler}>
+                <MyInput name='email' type='text' placeholder='Username' bindData={loginForm} />
+                <MyInput name='password' type='Password' bindData={loginForm}/>  
+              <LoginBtn handler={loginFormHandler}/>
               <div className={classes.register_link_mobile}>
                 Not registered yet? 
                 <Link  to='/registration'>

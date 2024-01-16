@@ -1,17 +1,5 @@
-import { useNavigate } from "react-router-dom"
-import { useAuth } from "@contexts/authContext"
-
-export default function(){
-
-    const auth = useAuth()
-    const navigate = useNavigate()
+export default function(props){
     return(
-        <button onClick={
-            (e) => {
-                e.preventDefault()
-                login()
-                navigate('/', {replace:true})
-            }
-        }>Login</button>
+        <button onClick={props.handler}>Login</button>
     )
 }
